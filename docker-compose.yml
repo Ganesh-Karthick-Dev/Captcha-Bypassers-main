@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  captcha-bypasser:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: captcha-bypasser:latest
+    container_name: captcha-bypasser
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    # Chromium requires sufficient shared memory (/dev/shm) to prevent tab crashes
+    shm_size: '2gb'
+    env_file:
+      - .env
+    environment:
+      - PORT=5001
+      - BROWSER_HEADLESS=0
+      - DISPLAY=:99
+      - SOLVER_ALLOW_PRIVATE=0
+      - SERP_WORKER_CONCURRENCY=1
+      - SERP_DEFAULT_DEPTH=50
+    volumes:
+      # Persist SQLite databases (geotargets.db, serp_cache.db), profiles, and snapshots
+      - ./seo-rank-collector/data:/app/seo-rank-collector/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5001/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s

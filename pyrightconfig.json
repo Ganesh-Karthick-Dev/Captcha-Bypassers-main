@@ -1,0 +1,16 @@
+{
+  "include": [
+    ".",
+    "seo-rank-collector",
+    "seo-captcha-detector",
+    "recaptcha"
+  ],
+  "extraPaths": [
+    ".",
+    "./seo-rank-collector",
+    "./seo-captcha-detector",
+    "./recaptcha"
+  ],
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
+}

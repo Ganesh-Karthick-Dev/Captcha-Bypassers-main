@@ -1,0 +1,22 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Git and environments
+.git/
+.gitignore
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+
+# Large local models and caches
+arkose/models/
+*.log
+
+# Screenshots created during local test runs
+seo-rank-collector/data/screenshots/*

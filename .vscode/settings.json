@@ -1,0 +1,12 @@
+{
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/seo-rank-collector",
+    "${workspaceFolder}/seo-captcha-detector",
+    "${workspaceFolder}/recaptcha"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/seo-rank-collector",
+    "${workspaceFolder}/seo-captcha-detector",
+    "${workspaceFolder}/recaptcha"
+  ]
+}
