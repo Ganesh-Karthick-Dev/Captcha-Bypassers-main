@@ -703,32 +703,12 @@ def is_port_available(port: int) -> bool:
         return s.connect_ex(('127.0.0.1', port)) != 0
 
 
-def connect_ngrok(port: int = 5001, domain: str = "scheming-squatting-statue.ngrok-free.dev"):
-    """Optionally exposes the microservice publicly via ngrok if NGROK_AUTHTOKEN is set."""
-    token = os.getenv("NGROK_AUTHTOKEN")
-    if not token:
-        return None
-    try:
-        import ngrok
-        forwarder = ngrok.forward(f"localhost:{port}", authtoken=token, domain=domain)
-        log.info("App is live on the internet at: %s", forwarder.url())
-        print(f"\n[ngrok] Public tunnel active at: {forwarder.url()}\n")
-        return forwarder
-    except Exception as e:
-        log.warning("Could not establish ngrok tunnel: %s", e)
-        return None
-
-
 if __name__ == "__main__":
     import uvicorn
 
     primary_port = int(os.getenv("PORT", "5001"))
     sec_env = os.getenv("SECONDARY_PORT", "")
     ter_env = os.getenv("SOLVER_PORT", "")
-    ngrok_domain = os.getenv("NGROK_DOMAIN", "scheming-squatting-statue.ngrok-free.dev")
-
-    # Connect ngrok if authtoken is present
-    connect_ngrok(port=primary_port, domain=ngrok_domain)
 
     active_ports = [primary_port]
     if sec_env and sec_env.isdigit():
