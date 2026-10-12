@@ -20,7 +20,6 @@ services:
       - DISPLAY=:99
       - SOLVER_ALLOW_PRIVATE=0
       - SERP_WORKER_CONCURRENCY=1
-      - SERP_DEFAULT_DEPTH=50
     volumes:
       # Persist SQLite databases (geotargets.db, serp_cache.db), profiles, and snapshots
       - ./seo-rank-collector/data:/app/seo-rank-collector/data

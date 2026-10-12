@@ -12,10 +12,10 @@ build/
 *.log
 
 # Credentials
-.env
 .solver-token.env
 apikey.txt
 **/apikey.txt
+
 
 # Local-only
 tests/
